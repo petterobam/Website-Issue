@@ -33,7 +33,7 @@ jobs:
 
       - name: Clone source code
         run: |
-            Issue_VERSION=$(jq -r ".Issue_VERSION" config.json) || echo 'main'
+            Issue_VERSION=$(jq -r ".Issue_VERSION" config.json || echo 'default')
             git clone https://github.com/zero2you/Website-Issue.git /opt/Issue;
             cd /opt/Issue/
             lastTag=$(git describe --tags `git rev-list --tags --max-count=1` 2>/dev/null || echo "default")
