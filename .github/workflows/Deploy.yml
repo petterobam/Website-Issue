@@ -4,12 +4,14 @@ on:
   workflow_dispatch:
   issues:
     types: [opened, edited]
+  push:
+    branches:
+      - main  # 只有在 main 分支上的提交才会触发工作流
 
 jobs:
   build:
     name: Generate blog
     runs-on: ubuntu-20.04
-    if: github.event.repository.owner.id == github.event.sender.id
     permissions: write-all
     steps:
       - name: Checkout
