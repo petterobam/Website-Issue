@@ -34,7 +34,7 @@ jobs:
       - name: Clone source code
         run: |
             Issue_VERSION=$(jq -r ".Issue_VERSION" config.json || echo 'default')
-            git clone https://github.com/zero2you/Website-Issue.git /opt/Issue;
+            git clone https://github.com/${{ github.repository }}.git /opt/Issue;
             cd /opt/Issue/
             lastTag=$(git describe --tags `git rev-list --tags --max-count=1` 2>/dev/null || echo "default")
             if [ $Issue_VERSION == 'last' ]; then git checkout $lastTag; else git checkout $Issue_VERSION; fi;
